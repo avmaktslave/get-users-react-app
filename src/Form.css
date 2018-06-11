@@ -1,0 +1,16 @@
+.form {
+  margin: 1em;
+}
+.input {
+  font-size: 1.4em;
+  margin: 1em;
+  height: 1.7em;
+  border: none;
+  border-bottom: 1px solid darkgray;
+}
+.form button {
+  width: 6em;
+  height: 2em;
+  font-size: 1.3em;
+  border-radius: 6px;
+}

@@ -1,25 +1,13 @@
 import React, { Component } from "react";
+import "normalize.css";
 import "./App.css";
+import Form from "./Form";
 
 class App extends Component {
-  state = {
-    users: []
-  };
-
-  myValue = React.createRef();
-
-  getUsers = e => {
-    e.preventDefault();
-    console.log(this.myValue.current.value);
-  };
-
   render() {
     return (
       <div className="App">
-        <form onSubmit={this.getUsers}>
-          <input type="text" ref={this.myValue} />
-          <button>Get Users</button>
-        </form>
+        <Form />
       </div>
     );
   }
