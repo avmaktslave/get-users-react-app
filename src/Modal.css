@@ -1,0 +1,20 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: grid;
+  align-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal {
+  padding: 2em;
+  max-height: 30vh;
+  background-color: #fff;
+  position: relative;
+  border-radius: 5px;
+  box-shadow: 0 5px 9px rgba(0, 0, 0, 0.2);
+  justify-self: center;
+}
