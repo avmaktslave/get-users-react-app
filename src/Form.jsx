@@ -4,10 +4,13 @@ import PropTypes from "prop-types";
 import axios from "axios";
 import "./Form.css";
 import Filter from "./Filter";
+import Modal from "./Modal";
 
 class Form extends Component {
   state = {
-    users: []
+    users: [],
+    isModalOpen: false,
+    modal: {}
   };
   myValue = React.createRef();
 
@@ -16,7 +19,6 @@ class Form extends Component {
     const number = this.myValue.current.value;
     axios.get(`https://randomuser.me/api/?results=${number}`).then(req => {
       const users = req.data.results;
-      console.log(users);
       this.setState({ users });
     });
   };
@@ -26,14 +28,18 @@ class Form extends Component {
     let arr = users.filter(
       item => item.name.first.match(val) || item.name.last.match(val)
     );
-    console.log(users);
-    console.log(val);
     this.setState({ users: arr });
   };
 
-  componentWillReceiveProps(nextProps) {
-    console.log("will receive");
-  }
+  toggleModal = e => {
+    const li = e.currentTarget;
+    this.setState({ modal: li });
+    this.setState({ isModalOpen: true });
+  };
+
+  leaveModal = e => {
+    this.setState({ isModalOpen: false });
+  };
 
   render() {
     return (
@@ -43,7 +49,15 @@ class Form extends Component {
           <button>Get Users</button>
         </form>
         <Filter users={this.state.users} Filter={this.Filter} />
-        <UserList users={this.state.users} />
+        <UserList users={this.state.users} toggleModal={this.toggleModal} />
+        {this.state.isModalOpen && (
+          <Modal
+            modal={this.state.modal}
+            isModalOpen={this.state.isModalOpen}
+            users={this.state.users}
+            leaveModal={this.leaveModal}
+          />
+        )}
       </Fragment>
     );
   }

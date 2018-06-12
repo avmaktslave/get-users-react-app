@@ -2,10 +2,15 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./UserList.css";
 
-const UserList = ({ users }) => (
+const UserList = ({ users, toggleModal }) => (
   <ul className="user-list">
     {users.map(per => (
-      <li key={per.phone} className="user-list_item">
+      <li
+        key={per.phone}
+        id={per.email}
+        onClick={toggleModal}
+        className="user-list_item"
+      >
         <img src={per.picture.large} alt={per.name.title} />
         <div className="desc">
           <span>{per.name.first}</span>
@@ -18,7 +23,8 @@ const UserList = ({ users }) => (
 );
 
 UserList.propTypes = {
-  users: PropTypes.array
+  users: PropTypes.array,
+  toggleModal: PropTypes.func
 };
 
 export default UserList;
